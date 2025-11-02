@@ -95,7 +95,7 @@ with tab1:
         (0, 10), (1, 8), (2, 6), (3, 4), (4, 2), (5, 0)
     ]
     
-    col1, col2 = st.columns([2, 1])
+    col1, col2 = st.columns([3, 2])
     
     with col1:
         st.subheader("בחר נקודה על העקומה:")
@@ -118,7 +118,7 @@ with tab1:
         current_x, current_y = production_data[idx]
         
         # יצירת הגרף
-        fig, ax = plt.subplots(figsize=(10, 8))
+        fig, ax = plt.subplots(figsize=(7, 5))
         
         xs = [p[0] for p in production_data]
         ys = [p[1] for p in production_data]
