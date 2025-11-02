@@ -23,64 +23,55 @@ st.markdown("""
     .main {
         direction: rtl;
         text-align: right;
+        padding-top: 1rem;
     }
     .stButton>button {
         width: 100%;
-        border-radius: 10px;
-        height: 50px;
-        font-size: 18px;
+        border-radius: 8px;
+        height: 40px;
+        font-size: 14px;
         font-weight: bold;
     }
     .success-box {
-        padding: 20px;
-        border-radius: 10px;
+        padding: 12px;
+        border-radius: 8px;
         background-color: #C8E6C9;
-        border-right: 5px solid #4CAF50;
-        margin: 10px 0;
+        border-right: 4px solid #4CAF50;
+        margin: 8px 0;
     }
     .error-box {
-        padding: 20px;
-        border-radius: 10px;
+        padding: 12px;
+        border-radius: 8px;
         background-color: #FFCDD2;
-        border-right: 5px solid #F44336;
-        margin: 10px 0;
+        border-right: 4px solid #F44336;
+        margin: 8px 0;
     }
     .info-box {
-        padding: 20px;
-        border-radius: 10px;
+        padding: 12px;
+        border-radius: 8px;
         background-color: #E3F2FD;
-        border-right: 5px solid #2196F3;
-        margin: 10px 0;
+        border-right: 4px solid #2196F3;
+        margin: 8px 0;
     }
     .metric-card {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 20px;
-        border-radius: 15px;
+        padding: 15px;
+        border-radius: 12px;
         color: white;
         text-align: center;
-        margin: 10px 0;
+        margin: 8px 0;
     }
     h1, h2, h3 {
         text-align: right;
+        margin-bottom: 0.5rem;
     }
     .stTabs [data-baseweb="tab-list"] {
         direction: rtl;
     }
+    .element-container {
+        margin-bottom: 0.5rem;
+    }
 </style>
-""", unsafe_allow_html=True)
-
-# כותרת ראשית
-st.markdown("""
-    <div style='background: linear-gradient(90deg, #2196F3 0%, #9C27B0 100%); 
-                padding: 30px; 
-                border-radius: 15px; 
-                text-align: center;
-                margin-bottom: 30px;'>
-        <h1 style='color: white; margin: 0; text-align: center;'>🎓 אפליקציה ללימוד כלכלה</h1>
-        <p style='color: white; font-size: 18px; margin: 10px 0 0 0; text-align: center;'>
-            תופעת המחסור והוצאות אלטרנטיביות
-        </p>
-    </div>
 """, unsafe_allow_html=True)
 
 # יצירת טאבים
@@ -88,7 +79,7 @@ tab1, tab2, tab3 = st.tabs(["📊 עקומת התמורה", "🔢 מחשבון",
 
 # ==================== טאב 1: עקומת התמורה ====================
 with tab1:
-    st.header("עקומת התמורה (Production Possibilities Curve)")
+    st.markdown("### עקומת התמורה (PPC)")
     
     # נתוני ייצור
     production_data = [
@@ -98,7 +89,7 @@ with tab1:
     col1, col2 = st.columns([3, 2])
     
     with col1:
-        st.subheader("בחר נקודה על העקומה:")
+        st.markdown("**בחר נקודה על העקומה:**")
         
         # כפתורים לבחירת נקודה
         cols = st.columns(6)
@@ -118,22 +109,22 @@ with tab1:
         current_x, current_y = production_data[idx]
         
         # יצירת הגרף
-        fig, ax = plt.subplots(figsize=(7, 5))
+        fig, ax = plt.subplots(figsize=(6, 4))
         
         xs = [p[0] for p in production_data]
         ys = [p[1] for p in production_data]
         
         # ציור העקומה
-        ax.plot(xs, ys, 'b-', linewidth=3, label='עקומת התמורה', marker='o', markersize=8)
+        ax.plot(xs, ys, 'b-', linewidth=2, label='עקומת התמורה', marker='o', markersize=6)
         
         # הדגשת הנקודה הנבחרת
-        ax.plot(current_x, current_y, 'ro', markersize=20, label='נקודה נוכחית', zorder=5)
+        ax.plot(current_x, current_y, 'ro', markersize=14, label='נקודה נוכחית', zorder=5)
         
-        ax.set_xlabel('מוצר X', fontsize=14, fontweight='bold')
-        ax.set_ylabel('מוצר Y', fontsize=14, fontweight='bold')
-        ax.set_title('עקומת התמורה (PPC)', fontsize=16, fontweight='bold')
+        ax.set_xlabel('מוצר X', fontsize=10, fontweight='bold')
+        ax.set_ylabel('מוצר Y', fontsize=10, fontweight='bold')
+        ax.set_title('עקומת התמורה (PPC)', fontsize=11, fontweight='bold')
         ax.grid(True, alpha=0.3, linestyle='--')
-        ax.legend(loc='upper right', fontsize=12)
+        ax.legend(loc='upper right', fontsize=9)
         ax.set_xlim(-0.5, 5.5)
         ax.set_ylim(-0.5, 10.5)
         
@@ -141,13 +132,13 @@ with tab1:
         plt.close()
     
     with col2:
-        st.subheader("מידע על הנקודה")
+        st.markdown("**מידע על הנקודה**")
         
         # הצגת הנקודה הנוכחית
         st.markdown(f"""
-        <div class='info-box'>
-            <h3 style='text-align: center; margin: 0;'>הנקודה הנוכחית</h3>
-            <h2 style='text-align: center; color: #2196F3;'>{current_x} מוצר X, {current_y} מוצר Y</h2>
+        <div class='info-box' style='padding: 10px; margin: 5px 0;'>
+            <h4 style='text-align: center; margin: 0 0 5px 0;'>הנקודה הנוכחית</h4>
+            <h3 style='text-align: center; color: #2196F3; margin: 0;'>{current_x} מוצר X, {current_y} מוצר Y</h3>
         </div>
         """, unsafe_allow_html=True)
         
@@ -156,25 +147,25 @@ with tab1:
         total_cost = max_y - current_y
         average_cost = total_cost / current_x if current_x > 0 else 0
         
-        st.markdown("### הוצאות אלטרנטיביות:")
+        st.markdown("#### הוצאות אלטרנטיביות:")
         
         # הוצאה כוללת
         st.markdown(f"""
-        <div style='background-color: #E3F2FD; padding: 15px; border-radius: 10px; 
-                    border-right: 5px solid #2196F3; margin: 10px 0;'>
-            <strong>הוצאה כוללת (Total):</strong><br>
-            <span style='font-size: 24px; color: #1976D2;'><b>{total_cost}</b></span> יחידות Y<br>
-            <small>נוסחה: {max_y} - {current_y} = {total_cost}</small>
+        <div style='background-color: #E3F2FD; padding: 8px; border-radius: 8px; 
+                    border-right: 4px solid #2196F3; margin: 5px 0;'>
+            <strong style='font-size: 13px;'>הוצאה כוללת (Total):</strong>
+            <span style='font-size: 18px; color: #1976D2;'><b>{total_cost}</b></span> יחידות Y
+            <div style='font-size: 11px; color: #666; margin-top: 3px;'>נוסחה: {max_y} - {current_y} = {total_cost}</div>
         </div>
         """, unsafe_allow_html=True)
         
         # הוצאה ממוצעת
         st.markdown(f"""
-        <div style='background-color: #FFF9C4; padding: 15px; border-radius: 10px; 
-                    border-right: 5px solid #FBC02D; margin: 10px 0;'>
-            <strong>הוצאה ממוצעת (Average):</strong><br>
-            <span style='font-size: 24px; color: #F9A825;'><b>{average_cost:.2f}</b></span> Y/X<br>
-            <small>נוסחה: {total_cost} ÷ {current_x} = {average_cost:.2f}</small>
+        <div style='background-color: #FFF9C4; padding: 8px; border-radius: 8px; 
+                    border-right: 4px solid #FBC02D; margin: 5px 0;'>
+            <strong style='font-size: 13px;'>הוצאה ממוצעת (Average):</strong>
+            <span style='font-size: 18px; color: #F9A825;'><b>{average_cost:.2f}</b></span> Y/X
+            <div style='font-size: 11px; color: #666; margin-top: 3px;'>נוסחה: {total_cost} ÷ {current_x} = {average_cost:.2f}</div>
         </div>
         """, unsafe_allow_html=True)
         
@@ -183,29 +174,33 @@ with tab1:
             prev_y = production_data[idx - 1][1]
             marginal_cost = prev_y - current_y
             st.markdown(f"""
-            <div style='background-color: #FFEBEE; padding: 15px; border-radius: 10px; 
-                        border-right: 5px solid #E53935; margin: 10px 0;'>
-                <strong>הוצאה שולית (Marginal):</strong><br>
-                <span style='font-size: 24px; color: #C62828;'><b>{marginal_cost}</b></span> יחידות Y<br>
-                <small>עלות יחידה #{current_x}</small>
+            <div style='background-color: #FFEBEE; padding: 8px; border-radius: 8px; 
+                        border-right: 4px solid #E53935; margin: 5px 0;'>
+                <strong style='font-size: 13px;'>הוצאה שולית (Marginal):</strong>
+                <span style='font-size: 18px; color: #C62828;'><b>{marginal_cost}</b></span> יחידות Y
+                <div style='font-size: 11px; color: #666; margin-top: 3px;'>עלות יחידה #{current_x}</div>
             </div>
             """, unsafe_allow_html=True)
         else:
             st.markdown("""
-            <div style='background-color: #FFEBEE; padding: 15px; border-radius: 10px; 
-                        border-right: 5px solid #E53935; margin: 10px 0;'>
-                <strong>הוצאה שולית (Marginal):</strong><br>
-                <span style='font-size: 16px;'>אין יחידה קודמת</span>
+            <div style='background-color: #FFEBEE; padding: 8px; border-radius: 8px; 
+                        border-right: 4px solid #E53935; margin: 5px 0;'>
+                <strong style='font-size: 13px;'>הוצאה שולית (Marginal):</strong>
+                <span style='font-size: 14px;'>אין יחידה קודמת</span>
             </div>
             """, unsafe_allow_html=True)
         
         # מקרא
-        st.markdown("### מקרא:")
         st.markdown("""
-        - 🟢 **על העקומה** - ייצור יעיל
-        - 🟡 **בתוך העקומה** - ייצור לא יעיל
-        - 🔴 **מחוץ לעקומה** - בלתי אפשרי
-        """)
+        <div style='margin-top: 10px;'>
+        <strong style='font-size: 13px;'>מקרא:</strong>
+        <div style='font-size: 12px; line-height: 1.4; margin-top: 5px;'>
+        🟢 על העקומה - ייצור יעיל<br>
+        🟡 בתוך העקומה - לא יעיל<br>
+        🔴 מחוץ לעקומה - בלתי אפשרי
+        </div>
+        </div>
+        """, unsafe_allow_html=True)
 
 # ==================== טאב 2: מחשבון ====================
 with tab2:
